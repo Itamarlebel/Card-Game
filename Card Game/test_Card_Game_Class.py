@@ -44,3 +44,17 @@ class TestCardGame(TestCase):
             self.invalid_player2_name = CardGame("Raz", 12, 26)
         with self.assertRaises(TypeError):
             self.invalid_number_of_card = CardGame("Raz", "Itamar", "26")
+
+    # Test the new_game method when start game = True
+    def test_new_game_valid(self):
+        self.assertEqual(len(self.cardgame.player1.cards), 26)
+        self.assertEqual(len(self.cardgame.player2.cards), 26)
+        self.assertEqual(len(self.cardgame.deck.deck), 0)
+        self.assertTrue(self.cardgame.start_game is False)
+
+    # Try to call the method not from init
+    def test_new_game_call_not_from_init(self):
+        self.cardgame_10_cards.new_game()
+        self.assertEqual(len(self.cardgame_10_cards.player1.cards), 10)
+        self.assertEqual(len(self.cardgame_10_cards.player2.cards), 10)
+        self.assertEqual(len(self.cardgame_10_cards.deck.deck), 32)
