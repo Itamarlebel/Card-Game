@@ -29,5 +29,19 @@ class TestCard(TestCase):
         with self.assertRaises(ValueError):
             self.invalid_suit_range_card = Card(1, 5)
 
+    # Checks that get_name method returns type str, the right card name representation
+    def test_get_name_valid(self):
+        self.assertEqual(self.ace_of_diamond.get_name(), 'Ace Of Diamond')
 
+    # Checks that __gt__ method performs as expected
+    def test__gt__valid(self):
+        self.assertTrue(self.king_of_club > self.ten_of_heart)  # Comparing by value
+        self.assertTrue(self.ace_of_club > self.ace_of_diamond)  # Comparing by suit
+        self.assertTrue(self.ace_of_diamond > self.king_of_club)  # Ace is the strongest card
+        self.assertFalse(self.ten_of_heart > self.king_of_club)  # False expression
+
+    # Checks that TypeError is raised when comparing Card type object to other type object
+    def test__gt__invalid(self):
+        with self.assertRaises(TypeError):
+            self.ace_of_diamond.__gt__(5)
 
