@@ -12,4 +12,10 @@ class DeckOfCards:
 
     def __repr__(self):
         return f"{self.deck}"
-    
+
+    # A method that shuffles the cards randomly in the cards deck
+    def card_shuffle(self):
+        """shuffle the cards"""
+        if len(self.deck) < 2:
+            raise AttributeError("Can't shuffle when there's less than 2 cards!")
+        random.shuffle(self.deck)
