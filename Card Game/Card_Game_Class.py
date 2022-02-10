@@ -23,3 +23,13 @@ class CardGame:
         self.start_game = True
         self.new_game()
 
+    # Method to create a new game, hand out cards for each player
+    def new_game(self):
+        """start the game by shuffling the deck of cards and hand out cards for each player"""
+        if self.start_game:
+            self.deck.card_shuffle()
+            self.player1.set_hand(self.deck)
+            self.player2.set_hand(self.deck)
+            self.start_game = False
+        else:
+            print("Error, game already started, can't hand out cards again!")
