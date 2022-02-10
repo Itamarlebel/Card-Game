@@ -9,3 +9,7 @@ class DeckOfCards:
         for suit in range(1, 5):
             for value in range(1, 14):
                 self.deck.append(Card(value, suit))
+
+    def __repr__(self):
+        return f"{self.deck}"
+    
