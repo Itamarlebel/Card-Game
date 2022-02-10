@@ -70,3 +70,4 @@ class Card:
         elif self.value == 1 and card.value != 1:
             return True
         return False
+    
