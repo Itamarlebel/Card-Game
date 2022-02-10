@@ -58,3 +58,17 @@ class TestCardGame(TestCase):
         self.assertEqual(len(self.cardgame_10_cards.player1.cards), 10)
         self.assertEqual(len(self.cardgame_10_cards.player2.cards), 10)
         self.assertEqual(len(self.cardgame_10_cards.deck.deck), 32)
+
+    # Test a case when player1 is the winner
+    def test_get_winner_player1(self):
+        self.cardgame.player2.cards.pop(0)
+        self.assertTrue(self.cardgame.get_winner() == self.cardgame.player1)
+
+    # Test a case when player2 is the winner
+    def test_get_winner_player2(self):
+        self.cardgame.player1.cards.pop(0)
+        self.assertTrue(self.cardgame.get_winner() == self.cardgame.player2)
+
+    # Test a case when there's a Tie
+    def test_get_winner_tie(self):
+        self.assertIs(self.cardgame.get_winner(), None)
