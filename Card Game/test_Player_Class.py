@@ -61,4 +61,27 @@ class TestPlayer(TestCase):
         with self.assertRaises(ValueError):
             self.player3.set_hand(self.deck_of_cards)
 
+    # Checks get_card method expected behaviour
+    def test_get_card_valid(self):
+        # Set the player's hand
+        self.player1.set_hand(self.deck_of_cards)
 
+        self.assertIsInstance(self.player1.get_card(), Card)  # Checks that get_card method returns a Card object
+        self.assertEqual(len(self.player1.cards), self.player1.num_of_cards - 1)  # Checks if get_card method takes out one card from Player's hand
+
+    # Checks that get_card method raises AttributeError if Player has no cards
+    def test_get_card_invalid(self):
+        with self.assertRaises(AttributeError):
+            self.player1.get_card()
+
+    # Checks that add_card adds the desired card to player's hand
+    def test_add_card_valid(self):
+        card = Card(1, 4)
+        self.player1.add_card(card)
+        self.player1.add_card(card)  # Trying to add the same card again
+        self.assertEqual(self.player1.cards, [card])
+
+    # Checks that add_card raises TypeError if it gets parameter of other type than Card
+    def test_add_card_invalid(self):
+        with self.assertRaises(TypeError):
+            self.player1.add_card('test')
