@@ -39,3 +39,14 @@ class TestDeckOfCards(TestCase):
         self.deck_of_cards.deck.append(Card(1, 1))
         with self.assertRaises(AttributeError):
             DeckOfCards.card_shuffle(self.deck_of_cards)
+
+    # Test that when calling the method she return Card and remove it from the deck
+    def test_deal_one_valid(self):
+        self.assertTrue(type(self.deck_of_cards.deal_one()) == Card)
+        self.assertEqual(len(self.deck_of_cards.deck), 51)
+
+    # Test invalid case when the deck is empty
+    def test_deal_one_invalid(self):
+        self.deck_of_cards.deck = []
+        with self.assertRaises(AttributeError):
+            self.deck_of_cards.deal_one()
